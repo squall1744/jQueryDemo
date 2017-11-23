@@ -29,7 +29,7 @@ function ajax(url, query){
     }else{
       alert('error')
     }
-  }).fail(alert('get no response')
+  }).fail()
 }
 
 
