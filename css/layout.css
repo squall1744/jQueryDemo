@@ -1,0 +1,32 @@
+ul, li, a {
+  margin:0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  color: #000;
+}
+
+.content li {
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+
+.content a {
+  display: block;
+  padding: 10px;
+}
+
+.content a.active {
+  background: green;
+}
+
+.loadMore {
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+  padding: 10px 0;
+  color:  #E27272;
+  border: 1px solid;
+  border-radius: 5px;
+  text-align: center;
+}
