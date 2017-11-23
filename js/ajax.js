@@ -1,3 +1,5 @@
+var pageIndex = 3
+var len = 6
 $('.content').on('mouseenter', 'a', function(){
   $(this).addClass('active')
   $(this).parent().siblings().find('a').removeClass('active')
@@ -8,7 +10,9 @@ $('.content').on('mouseleave', 'a', function(){
 })
 
 
-
+$('.loadMore').on('click', function(){
+  ajax('/loadMore', {idx: pageIndex, len: len})
+})
 
 
 function ajax(url, query){
@@ -16,7 +20,16 @@ function ajax(url, query){
     url: url,
     method: 'GET',
     data: query
-  }).done(addContent(res)).fail()
+  }).done(function(res){
+    res = JSON.parse(res)
+    console.log(res.status)
+    if(res.status === 0){
+      pageIndex += len
+      addContent(res.data)
+    }else{
+      alert('error')
+    }
+  }).fail()
 }
 
 
@@ -24,6 +37,7 @@ function ajax(url, query){
 function addContent(res){
   var html =''
   $.each(res, function(){
-    html += '<li><a href="#">' + res.data + '</a></li>'
+    html += '<li><a href="#">' + this + '</a></li>'
   })
+  $(".content").append(html)
 }
